@@ -6,11 +6,11 @@ import { Lora, Open_Sans } from "next/font/google"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Geovana Evyla | Desenvolvedora Full Stack",
+  title: "Dev Nana | Portfólio",
   description:
     "Desenvolvedora Full Stack em formação pela UFC em Engenharia de Software...",
   openGraph: {
-    title: "Geovana Evyla | Desenvolvedora Full Stack",
+    title: "Dev Nana | Portfólio",
     description:
       "Portfólio profissional com projetos em React, Next.js e Carreira.",
     type: "website",

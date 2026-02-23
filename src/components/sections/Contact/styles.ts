@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Section = styled.section`
   padding: 80px 20px;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.gradients.hero};
   transition: background 0.3s ease;
   min-height: 100vh;
   display: flex;

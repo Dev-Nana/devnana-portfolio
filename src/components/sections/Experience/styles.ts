@@ -43,8 +43,6 @@ export const Card = styled.div`
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.background};
   position: relative;
-
-  /* Borda gradiente elegante */
   border: 1px solid transparent;
   background-clip: padding-box;
   
@@ -53,7 +51,7 @@ export const Card = styled.div`
     position: absolute;
     inset: 0;
     border-radius: 16px;
-    padding: 1px;
+    padding: 2px;
     background: ${({ theme }) => theme.gradients.border};
     -webkit-mask: 
       linear-gradient(#fff 0 0) content-box, 
