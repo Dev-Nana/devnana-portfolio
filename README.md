@@ -14,7 +14,7 @@ Este portfólio foi construído para apresentar meus projetos, habilidades técn
 - Netlify (deploy)
 
 ## Deploy via Netlify.
-Acesse: [https://devnana.netlify.app/]
+Acesse: https://devnana.netlify.app/
 
 ## Contato
 
