@@ -1,7 +1,10 @@
 "use client"
 
 import * as S from "./styles"
+import { useInView } from "@/hooks/useInView"
 import { FiSettings, FiPieChart, FiCode, FiLayers } from "react-icons/fi"
+
+import { BlobItem, Blobs } from "@/components/common/Blobs"
 
 const experiences = [
   {
@@ -13,7 +16,7 @@ const experiences = [
   },
   {
     icon: FiPieChart,
-    title: "Diretor de Projetos & TechLead (2 anos)",
+    title: "Direção de Projetos & TechLead (2 anos)",
     company: "Avante Tech Jr • UFC Quixadá",
     description:
       "Liderança de equipes, definição de processos de trabalho e acompanhamento de projetos.",
@@ -37,10 +40,20 @@ const experiences = [
 ]
 
 export function Experience() {
+
+  const { ref, isVisible } = useInView<HTMLDivElement>()
+
+  const blobs: BlobItem[] = [
+    { top: "45%", right: "8%", $color: "primary" },
+    { top: "10%", left: "10%", $color: "secondary" },
+    { top: "50%", left: "-10%", $color: "primary" },
+  ]
+
   return (
     <S.Section>
-      <S.Container>
-        <S.Header>
+      <Blobs items={blobs}/>
+      <S.Container ref={ref}>
+        <S.Header $visible={isVisible}>
           <h2>Experiência & Atividades</h2>
           <p>
             Minha jornada profissional, acadêmica e minhas contribuições em
@@ -49,11 +62,23 @@ export function Experience() {
         </S.Header>
 
         <S.Cards>
-          {experiences.map((item, index) => {
+          {experiences.map((item, i) => {
             const Icon = item.icon
 
             return (
-              <S.Card key={index}>
+              <S.Card
+                key={item.title}
+                $visible={isVisible}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const x = e.clientX - rect.left
+                  const y = e.clientY - rect.top
+
+                  e.currentTarget.style.setProperty("--x", `${x}px`)
+                  e.currentTarget.style.setProperty("--y", `${y}px`)
+                }}
+                style={{ transitionDelay: `${i * 0.15}s` }}
+              >
                 <S.Icon>
                   <Icon />
                 </S.Icon>

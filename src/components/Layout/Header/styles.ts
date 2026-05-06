@@ -35,6 +35,10 @@ export const Container = styled.header<{ $scrolled: boolean }>`
     
     box-shadow: ${({ $scrolled }) =>
     $scrolled ? "0 4px 20px rgba(0,0,0,0.1)" : "none"};
+
+    @media (min-width: 1028px) {
+      padding: 0 220px;
+    }
 `
 
 export const Logo = styled.h1`

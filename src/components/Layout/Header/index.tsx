@@ -4,9 +4,18 @@ import { useContext, useEffect, useState } from "react"
 import { ThemeContext } from "@/context/ThemeContext"
 import { useScrollSpy } from "@/hooks/useScrollSpy"
 import { Sun, Moon, Menu, X } from "lucide-react"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
 import * as S from "./styles"
 
 export function Header() {
+  const pathname = usePathname()
+  const isHome = pathname === "/"
+
+  const getHref = (id: string) => {
+    return isHome ? `#${id}` : `/#${id}`
+  }
+
   const { toggleTheme, theme } = useContext(ThemeContext)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -25,27 +34,25 @@ export function Header() {
   }, [])
 
 
-  const activeSection = useScrollSpy([
-    "inicio",
-    "sobre",
-    "projetos",
-    "experiencia",
-    "contato",
-  ])
+  const activeSection = isHome
+    ? useScrollSpy(["inicio", "sobre", "projetos", "experiencia", "contato"])
+    : ""
 
 
   return (
     <>
       <S.Container $scrolled={scrolled}>
 
-        <S.Logo>nana.</S.Logo>
+        <Link href="/">
+          <S.Logo>nana.</S.Logo>
+        </Link>
 
         <S.DesktopNav>
-          <a href="#inicio" className={activeSection === "inicio" ? "active" : ""}>Início</a>
-          <a href="#sobre" className={activeSection === "sobre" ? "active" : ""}>Sobre Mim</a>
-          <a href="#projetos" className={activeSection === "projetos" ? "active" : ""}>Projetos</a>
-          <a href="#experiencia" className={activeSection === "experiencia" ? "active" : ""}>Experiência</a>
-          <a href="#contato" className={activeSection === "contato" ? "active" : ""}>Contato</a>
+          <Link href={getHref("inicio")} className={activeSection === "inicio" ? "active" : ""}>Início</Link>
+          <Link href={getHref("sobre")} className={activeSection === "sobre" ? "active" : ""}>Sobre Mim</Link>
+          <Link href={getHref("projetos")} className={activeSection === "projetos" ? "active" : ""}>Projetos</Link>
+          <Link href={getHref("experiencia")} className={activeSection === "experiencia" ? "active" : ""}>Experiência</Link>
+          <Link href={getHref("contato")} className={activeSection === "contato" ? "active" : ""}>Contato</Link>
         </S.DesktopNav>
 
 
@@ -67,11 +74,11 @@ export function Header() {
           <X size={28} />
         </S.CloseButton>
 
-        <a href="#inicio">Início</a>
-        <a href="#sobre">Sobre Mim</a>
-        <a href="#projetos">Projetos</a>
-        <a href="#experiencia">Experiência</a>
-        <a href="#contato">Contato</a>
+        <Link href={getHref("inicio")} onClick={() => setIsOpen(false)}>Início</Link>
+        <Link href={getHref("sobre")} onClick={() => setIsOpen(false)}>Sobre Mim</Link>
+        <Link href={getHref("projetos")} onClick={() => setIsOpen(false)}>Projetos</Link>
+        <Link href={getHref("experiencia")} onClick={() => setIsOpen(false)}>Experiência</Link>
+        <Link href={getHref("contato")} onClick={() => setIsOpen(false)}>Contato</Link>
       </S.MobileMenu>
 
       {isOpen && <S.Overlay onClick={() => setIsOpen(false)} />}

@@ -7,7 +7,7 @@ export const Card = styled.div`
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 300px;
-  height: 310px;
+  height: 340px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   position: relative;
 
@@ -15,13 +15,18 @@ export const Card = styled.div`
     transform: translateY(-8px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
   }
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 `
 
 export const ImageWrapper = styled.div`
   position: absolute;
   top: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
   width: 300px;
-  height: 165px;
+  height: 180px;
 
   &::after {
     content: "";
