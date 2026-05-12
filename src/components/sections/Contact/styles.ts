@@ -13,6 +13,7 @@ export const Section = styled.section`
 `
 
 export const Container = styled.div`
+  z-index: 2;
   max-width: 700px;
   margin: 0 auto;
 `
